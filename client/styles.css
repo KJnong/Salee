@@ -1,0 +1,32 @@
+body{
+    background: url("/client/img/white-painted-wall-1939485.jpg");
+
+}
+
+.button-primary{
+    margin-left: 255px;
+}
+
+.u-full-width, #name{
+    border-radius: 20px;
+}
+
+.title, .logo{
+    text-align: center;
+}
+
+.salee-form{
+    width: 50%;
+    margin:0 auto;
+
+}
+
+#loading{
+    text-align: center;
+}
+
+.sales{
+    text-align: center;
+    margin: auto;
+}
+
