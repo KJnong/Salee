@@ -9,16 +9,20 @@ loadContent();
 
 form.addEventListener('submit', (event)=>
 {
+
     salesElement.innerHTML = ""
     event.preventDefault()
 
+    //hidding the form and loading GIF after salee has been submitted
     form.style.display = 'none'
     loadImage.style.display = ''
 
+    // retrieving data from the form using the FormData class
     const formData = new FormData(form);
     const name = formData.get('name');
     const content = formData.get('content');
 
+    //salee object from the form
     const salee = {
         name,
         content
@@ -31,7 +35,6 @@ form.addEventListener('submit', (event)=>
     }).then(response => response.json())
       .then(createdSale =>
             {
-                console.log(createdSale);
                 form.reset();
                 form.style.display = '';
                 loadImage.style.display = 'none';
@@ -57,12 +60,15 @@ function loadContent() {
                     contents2.textContent = sale.content;
 
                     const dateCreated = document.createElement('small')
-                    dateCreated.textContent = sale.created
+                    dateCreated.textContent = moment(sale.created).fromNow();
+
+                    const breakline = document.createElement('hr')
                     
                     contents.appendChild(contents2)
-                    div.appendChild(header);
                     div.appendChild(dateCreated);
+                    div.appendChild(header);
                     div.appendChild(contents);
+                    div.appendChild(breakline);
                     
                     salesElement.appendChild(div);
                 });
