@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'moment'
 
 class Sales extends React.Component {
     state =
@@ -7,13 +8,10 @@ class Sales extends React.Component {
         }
 
     loadContent = async () => {
-        const rawSales = await fetch('http://localhost:5000/salee')
-        const sales = await rawSales.json();
+        const API_call = await fetch('http://localhost:5000/salee')
+        const saleesObject = await API_call.json();
 
-        this.setState({ saless: sales });
-
-        console.log(this.state);
-
+        this.setState({ salees: saleesObject });
     }
 
     componentDidMount() {
@@ -21,15 +19,17 @@ class Sales extends React.Component {
     }
     render() {
 
-        const { saless } = this.state;
+        const { salees } = this.state;
 
-        if (!!saless) {
+        if (!!salees) {
 
             return (
                 <div>
-                    {saless.map(sale => (
+                    {salees.map(sale => (
                         <div>
-                            <small>{sale.time}</small>
+                            <div>
+                                <small>{Moment(sale.created).fromNow()}</small>
+                            </div>
                             <small>{sale.name}</small>
                             <p>
                                 <h5>{sale.content}</h5>
@@ -37,7 +37,7 @@ class Sales extends React.Component {
                 </div>)
         }
         else {
-            return <p>Ther are no Saless</p>
+            return <p>There are no Saless</p>
         }
     }
 
