@@ -40,10 +40,7 @@ app.post('/salee', (req, res)=>
         };
         sales
             .insert(sale)
-            .then(createdSale =>{
-                res.json(createdSale)
-            })
-        
+            .then(res.status(200))
     }
     else
     {

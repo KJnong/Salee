@@ -1,5 +1,6 @@
 import React from 'react';
 import Moment from 'moment'
+import '../App.css';
 
 class Sales extends React.Component {
     state =
@@ -24,7 +25,7 @@ class Sales extends React.Component {
         if (!!salees) {
 
             return (
-                <div>
+                <div className = 'sales'>
                     {salees.map(sale => (
                         <div>
                             <div>
@@ -33,11 +34,12 @@ class Sales extends React.Component {
                             <small>{sale.name}</small>
                             <p>
                                 <h5>{sale.content}</h5>
-                            </p></div>))}
+                            </p>
+                        </div>))}
                 </div>)
         }
         else {
-            return <p>There are no Saless</p>
+            return <p>Salees failed to load</p>
         }
     }
 
