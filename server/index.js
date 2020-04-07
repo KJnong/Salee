@@ -6,7 +6,7 @@ const monk = require('monk')
 const app = express();  //creating the app
 
 //connection to database
-const db = monk(process.env.MONGO_URI || 'localhost/salee'); //creates the database if doesnt exist
+const db = monk(process.env.MONGO_URI || 'mongodb+srv://JTnong:<JTnong234567>@salee-fa4uq.mongodb.net/test?retryWrites=true&w=majority'); //creates the database if doesnt exist
 const sales = db.get("sales") 
 
 app.use(cors()); //middleware for cors

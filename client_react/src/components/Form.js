@@ -1,5 +1,5 @@
 import React from 'react'
-import '../App.css'
+import '../components/ComponentStyle/Form.css'
 
 
 class Form extends React.Component

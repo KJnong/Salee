@@ -2,28 +2,13 @@
   text-align: center;
 }
 
-.backround{
-  background-color: #282c34;
-
-}
-
 .loading{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-
 body{
   background: url("./img/white-painted-wall-1939485.jpg");
   font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 .title, .logo{
@@ -38,11 +23,6 @@ body{
   border-radius: 20px;
 }
 
-.salee-form{
-  width: 50%;
-  margin:0 auto;
-
-}
 
 .sales{
   text-align: center;
