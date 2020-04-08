@@ -1,70 +1,51 @@
 const express = require('express')
 const cors = require('cors')
-const monk = require('monk')
+const db = require('mongoose')
+//importing the salee model
+const saleeModel = require('./Models/Sales')
+
+//database connection string
+const connectString = 'mongodb+srv://Jethro:JTnong12345@salee-ppqqx.mongodb.net/test?retryWrites=true&w=majority'
 
 
 const app = express();  //creating the app
 
 //connection to database
-const db = monk(process.env.MONGO_URI || 'mongodb+srv://JTnong:<JTnong234567>@salee-fa4uq.mongodb.net/test?retryWrites=true&w=majority'); //creates the database if doesnt exist
-const sales = db.get("sales") 
+db.connect(connectString,{ useNewUrlParser: true } ,()=>{console.log('connected to db');
+})
 
 app.use(cors()); //middleware for cors
 app.use(express.json()); 
 
 
-app.get('/', (req, res)=>
-{
-    res.json({
-        Name:"Jethro",
-        Age:26
-    })
-})
 
-function IsValidSale(sale)
+app.post('/salee', async(req, res)=>
 {
-    return sale.name && sale.name.toString().trim() !== "" &&
-    sale.content && sale.content.toString().trim() !== ""
-}
+    // const test = {
+    //     name : req.body.name,
+    //     content : req.body.content,
+    //     created : new Date()
+    // }
 
-app.post('/salee', (req, res)=>
-{
-    if (IsValidSale(req.body))
-    {
-        //insert into database
-        const sale =
+    // res.send(test)
+    const sales = new saleeModel(
         {
-            name : req.body.name.toString(),
-            content : req.body.content.toString(),
+            name : req.body.name,
+            content : req.body.content,
             created : new Date()
-        };
-        sales
-            .insert(sale)
-            .then(res.status(200))
-    }
-    else
-    {
-        res.status(422)
-        res.json({
-            message: "Both Name and Content are required"
         })
+    
+    try{
+        const savedSalee = await sales.save();
+        console.log(savedSalee);
+        res.send(savedSalee)
+        
     }
-    
+    catch(err){
+        res.status('404').send(err);
+    }
 })
 
-app.get('/salee', (req, res)=>
-{
-    sales
-        .find()
-        .then(sales=>
-            {
-                res.json(sales)
-            })
-})
 
-app.listen(5000, ()=>
-{
-    
-    console.log('listening on port 5000');
-    
-})
+
+app.listen(5000, ()=>{console.log('listening on port 5000');})
