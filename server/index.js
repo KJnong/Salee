@@ -1,11 +1,13 @@
 const express = require('express')
 const cors = require('cors')
 const db = require('mongoose')
+require('dotenv').config();
 //importing the salee model
 const saleeModel = require('./Models/Sales')
 
 //database connection string
-const connectString = 'mongodb+srv://Jethro:JTnong12345@salee-ppqqx.mongodb.net/test?retryWrites=true&w=majority'
+const password = process.env.MongoDB_Password;
+const connectString = `mongodb+srv://Jethro:${password}@salee-ppqqx.mongodb.net/test?retryWrites=true&w=majority`
 
 
 const app = express();  //creating the app
