@@ -6,8 +6,7 @@ class Form extends React.Component
 {
     state = 
     {
-        name : '',
-        content : ''
+        response : []
     }
 
     sendSalee = async (e)=> {
@@ -21,16 +20,17 @@ class Form extends React.Component
             content
         }
 
+        e.currentTarget.reset();
+
         const API_post = await fetch('http://localhost:5000/salee',{
             method: 'Post',
             body: JSON.stringify(salee),
             headers:{'content-type':'application/json'}})
 
-        console.log(API_post);
+        // const response2 = await API_post.json();
 
-        this.setState({name : undefined,
-            content : undefined})
-        
+        // this.setState({ response: response2 });
+        this.props.refresh();
 
     }
 

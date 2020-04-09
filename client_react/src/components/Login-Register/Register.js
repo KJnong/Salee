@@ -2,6 +2,32 @@ import React, { Component } from "react";
 import '../ComponentStyle/LogReg.css'
 
 export default class SignUp extends Component {
+
+    RegisterUser = async (e)=> {
+        e.preventDefault();
+
+        const name = e.target.elements.name.value;
+        const content = e.target.elements.content.value
+
+        const newUser = {
+            name,
+            content
+        }
+
+        const API_post = await fetch('http://localhost:5000/user/register',{
+            method: 'Post',
+            body: JSON.stringify(newUser),
+            headers:{'content-type':'application/json'}})
+
+        const response2 = await API_post.json();
+
+        this.setState({ response: response2 });
+     
+
+    }
+
+
+
     render() {
         return (
             <div className="auth-inner">
