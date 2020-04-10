@@ -22,7 +22,6 @@ app.use(express.json());
 
 app.use('/user', authRouter );
 
-
 app.get('/salee', async (req, res)=>{
     const SaleObject = await saleeModel.find();
     
