@@ -7,6 +7,7 @@ const authRouter = require('./Routes/auth')
 const saleeModel = require('./Models/Sales')
 
 //database connection string
+// localhost database 'mongodb://localhost:/myproject'
 const password = process.env.MongoDB_Password;
 const connectString = `mongodb+srv://Jethro:${password}@salee-ppqqx.mongodb.net/test?retryWrites=true&w=majority`
 
