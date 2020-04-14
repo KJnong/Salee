@@ -4,12 +4,18 @@ const {RegiserValidation} = require("../Validation/Validation")
 
 router.post('/register', async (req , res)=>
 {    
-    const {error} = RegiserValidation(req.body);
-    res.send(error.details[0].message)
+    //valadating req.body
+    const {error} = await RegiserValidation(req.body);
 
     if (error) return res.status(404).send(error.details[0].message)
     
-   
+    //checking if email already exist
+    const emailExist = await userModel.findOne({email : req.body.email})
+
+    if (emailExist) {
+        return res.status(401).send("Email already exist")
+    }
+
     const user = new userModel(
         {
             name : req.body.name,

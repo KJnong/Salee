@@ -7,6 +7,12 @@ const userSchema = mongoose.Schema({
         min: 3,
         max:15
     },
+    lastName: {
+        type: String,
+        required: true,
+        min: 3,
+        max:15
+    },
     email: {
         type: String,
         required: true,
@@ -25,5 +31,5 @@ const userSchema = mongoose.Schema({
     
 })
 
-module.exports = mongoose.model('userModel', userSchema )
+module.exports = mongoose.model('User', userSchema )
 

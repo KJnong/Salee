@@ -3,6 +3,7 @@ const cors = require('cors')
 const db = require('mongoose')
 require('dotenv').config();
 const authRouter = require('./Routes/auth')
+const bodyParser = require('body-parser');
 //importing the salee model
 const saleeModel = require('./Models/Sales')
 
@@ -18,6 +19,7 @@ const app = express();  //creating the app
 db.connect(connectString,{ useNewUrlParser: true } ,()=>{console.log('connected to db');
 })
 
+app.use(bodyParser.json());
 app.use(cors()); //middleware for cors
 app.use(express.json()); 
 
