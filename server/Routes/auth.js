@@ -1,17 +1,18 @@
 const router = require('express').Router();
 const userModel = require('../Models/User')
-const {RegiserValidation} = require("../Validation/Validation")
+const { RegiserValidation } = require("../Validation/Validation")
+const { LoginValidation } = require("../Validation/Validation")
 const bcrypt = require('bcryptjs')
+const token = require('jsonwebtoken')
 
-router.post('/register', async (req , res)=>
-{    
+router.post('/register', async (req, res) => {
     //valadating req.body
-    const {error} = await RegiserValidation(req.body);
+    const { error } = await RegiserValidation(req.body);
 
     if (error) return res.status(404).send(error.details[0].message)
-    
+
     //checking if email already exist
-    const emailExist = await userModel.findOne({email : req.body.email})
+    const emailExist = await userModel.findOne({ email: req.body.email })
 
     if (emailExist) {
         return res.status(401).send("Email already exist")
@@ -24,23 +25,45 @@ router.post('/register', async (req , res)=>
 
     const user = new userModel(
         {
-            name : req.body.name,
-            lastName : req.body.lastName,
-            email : req.body.email,
-            password : hashedPassword
+            name: req.body.name,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: hashedPassword
         })
 
-    try
-    {
+    try {
         const userRes = await user.save();
         res.send(userRes)
-        
+
     }
-    catch(err)
-    {
+    catch (err) {
         res.status('404').send(err);
     }
+
+})
+
+router.post('/login', async (req, res) => {
+    //valadating req.body
+    const { error } = await LoginValidation(req.body);
+    if (error) return res.status(404).send(error.details[0].message)
+
+    //checking if email already exist
+    const user = await userModel.findOne({ email: req.body.email })
+    if (!user) res.status(400).send("Username or Password incorrect")
+
+    //check if password matches
+    const validPassword = await bcrypt.compare(req.body.password, user.password);
+    if (!validPassword) res.status(400).send("Username or Password incorrect");
+
+    //user has logged in
+    res.send('loggged in!!!')
+    console.log('loggged in!!!');
     
+
+
+
+
+
 })
 
 module.exports = router;

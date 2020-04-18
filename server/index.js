@@ -16,39 +16,40 @@ const connectString = `mongodb+srv://Jethro:${password}@salee-ppqqx.mongodb.net/
 const app = express();  //creating the app
 
 //connection to database
-db.connect(connectString,{ useNewUrlParser: true } ,()=>{console.log('connected to db');
+db.connect(connectString, { useNewUrlParser: true }, () => {
+    console.log('connected to db');
 })
 
 app.use(bodyParser.json());
 app.use(cors()); //middleware for cors
-app.use(express.json()); 
+app.use(express.json());
 
-app.use('/user', authRouter );
+app.use('/user', authRouter);
 
-app.get('/salee', async (req, res)=>{
+
+app.get('/salee', async (req, res) => {
     const SaleObject = await saleeModel.find();
-    
+
     res.send(SaleObject);
 })
 
-app.post('/salee', async(req, res)=>
-{
+app.post('/salee', async (req, res) => {
 
     const sales = new saleeModel(
         {
-            name : req.body.name,
-            content : req.body.content,
-            created : new Date()
+            name: req.body.name,
+            content: req.body.content,
+            created: new Date()
         })
-    
-    try{
+
+    try {
         await sales.save();
         const SaleObject = await saleeModel.find();
-    
+
         res.send(SaleObject);
-        
+
     }
-    catch(err){
+    catch (err) {
         res.status('404').send(err);
     }
 })
@@ -57,4 +58,4 @@ app.post('/salee', async(req, res)=>
 
 
 
-app.listen(5000, ()=>{console.log('listening on port 5000');})
+app.listen(5000, () => { console.log('listening on port 5000'); })
