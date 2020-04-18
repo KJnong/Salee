@@ -3,7 +3,7 @@ const userModel = require('../Models/User')
 const { RegiserValidation } = require("../Validation/Validation")
 const { LoginValidation } = require("../Validation/Validation")
 const bcrypt = require('bcryptjs')
-const token = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
 router.post('/register', async (req, res) => {
     //valadating req.body
@@ -55,9 +55,13 @@ router.post('/login', async (req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if (!validPassword) res.status(400).send("Username or Password incorrect");
 
+    //set up token
+    const token = jwt.sign({email: user.email}, process.env.Token_Key );
+    res.header("auth-token", token).send(token)
+
     //user has logged in
-    res.send('loggged in!!!')
-    console.log('loggged in!!!');
+    res.json({username:user.email})
+
     
 
 

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import '../ComponentStyle/LogReg.css'
-import {Redirect} from 'react-router-dom'
 
 export default class Login extends Component {
 
@@ -15,12 +14,14 @@ export default class Login extends Component {
             password
         }
 
-        const {status} = await fetch('http://localhost:5000/user/login',{
+        const results = await fetch('http://localhost:5000/user/login',{
             method: 'Post',
             body: JSON.stringify(user),
             headers:{'content-type':'application/json'}})
      
-        this.props.userAuthProp(status)
+        const data = await results.json()
+
+        this.props.userAuthProp(data)
         this.props.history.push('/')
         
     }

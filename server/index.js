@@ -3,15 +3,14 @@ const cors = require('cors')
 const db = require('mongoose')
 require('dotenv').config();
 const authRouter = require('./Routes/auth')
+const homeRouter = require('./Routes/home')
+const postSaleeRouter = require('./Routes/saleePost')
 const bodyParser = require('body-parser');
-//importing the salee model
-const saleeModel = require('./Models/Sales')
 
 //database connection string
 // localhost database 'mongodb://localhost:/myproject'
 const password = process.env.MongoDB_Password;
 const connectString = `mongodb+srv://Jethro:${password}@salee-ppqqx.mongodb.net/test?retryWrites=true&w=majority`
-
 
 const app = express();  //creating the app
 
@@ -24,38 +23,13 @@ app.use(bodyParser.json());
 app.use(cors()); //middleware for cors
 app.use(express.json());
 
+//reg and login route
 app.use('/user', authRouter);
 
+//posting salee route
+app.use('/salee', postSaleeRouter)
 
-app.get('/salee', async (req, res) => {
-    const SaleObject = await saleeModel.find();
-
-    res.send(SaleObject);
-})
-
-app.post('/salee', async (req, res) => {
-
-    const sales = new saleeModel(
-        {
-            name: req.body.name,
-            content: req.body.content,
-            created: new Date()
-        })
-
-    try {
-        await sales.save();
-        const SaleObject = await saleeModel.find();
-
-        res.send(SaleObject);
-
-    }
-    catch (err) {
-        res.status('404').send(err);
-    }
-})
-
-
-
-
+//home route
+app.use('/', homeRouter )
 
 app.listen(5000, () => { console.log('listening on port 5000'); })

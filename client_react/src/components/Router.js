@@ -12,15 +12,11 @@ class Router1 extends React.Component {
   state = { userName: '' }
 
   userAuth = (data) => {
-
-    if (data === 200) {
-      this.setState({ userName: 'Jethro Nong' })
-    }
-
+      this.setState({ userName: data.username})
   }
 
   render() {
-    console.log(this.state);
+
 
     return (<Router>
       <div>
