@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header'
 import Form from './components/Form'
 import Sales from './components/Sales'
+import axios from 'axios'
 
 class App extends React.Component {
   state =
@@ -11,10 +12,27 @@ class App extends React.Component {
     }
 
   loadContent = async () => {
-    const API_call = await fetch('http://localhost:5000/salee')
-    const saleesObject = await API_call.json();
 
-    this.setState({ salees: saleesObject });
+  
+  const token = localStorage.getItem('auth-token'); 
+  console.log(token);
+
+    const {data, status} = await axios({
+      method: 'get', 
+      url: 'http://localhost:5000/salee',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })    
+
+  
+    console.log(status);
+    
+ 
+    if (status === 400) {
+      this.props.history.push('/sign-in')}
+    
+    this.setState({ salees: data });
   }
 
   componentWillMount() {

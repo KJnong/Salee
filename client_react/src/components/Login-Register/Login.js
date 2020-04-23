@@ -14,14 +14,16 @@ export default class Login extends Component {
             password
         }
 
-        const results = await fetch('http://localhost:5000/user/login',{
+        const response = await fetch('http://localhost:5000/user/login',{
             method: 'Post',
             body: JSON.stringify(user),
             headers:{'content-type':'application/json'}})
      
-        const data = await results.json()
+        const {username, token} = await response.json();
 
-        this.props.userAuthProp(data)
+        localStorage.setItem('auth-token', token) 
+
+        this.props.userAuthProp(username)
         this.props.history.push('/')
         
     }

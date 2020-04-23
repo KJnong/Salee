@@ -1,91 +1,59 @@
-// const express = require('express')
-// const cors = require('cors')
-// const db = require('mongoose')
+// import React from 'react';
+// import './App.css';
+// import Header from './components/Header'
+// import Form from './components/Form'
+// import Sales from './components/Sales'
+// import axios from 'axios'
 
-// //import routes
-// //const authRoute = require('./Routes/auth')
-
-// //database connection string
-// const connectString = 'mongodb+srv://<Jethro>:<JTnong234567>@salee-fa4uq.mongodb.net/test?retryWrites=true&w=majority'
-
-
-// const app = express();  //creating the app
-
-// //connection to database
-// db.connect('localhost/salee' ,()=>{console.log('connected to db');
-// })
-
-// app.use(cors()); //middleware for cors
-// app.use(express.json()); 
-
-// //importing the salee model
-// const saleeModel = require('./Models/Sales')
-
-// app.post('/salee', async(req, res)=>
-// {
-//     const sales = new saleeModel(
-//         {
-//             name : req.body.name,
-//             content : req.body.content,
-//             created : new Date()
-//         })
-    
-//     try{
-//         const savedSalee = await sales.save();
-//         console.log(savedSalee);
-        
+// class App extends React.Component {
+//   state =
+//     {
+//       salees: []
 //     }
-//     catch(err){
-//         res.status('404').send(err);
-//     }
-// })
 
+//   loadContent = async () => {
 
-// //using Monk
-// // function IsValidSale(sale)
-// // {
-// //     return sale.name && sale.name.toString().trim() !== "" &&
-// //     sale.content && sale.content.toString().trim() !== ""
-// // }
-
-// // app.post('/salee', (req, res)=>
-// // {
-// //     if (IsValidSale(req.body))
-// //     {
-// //         //insert into database
-// //         const sale =
-// //         {
-// //             name : req.body.name.toString(),
-// //             content : req.body.content.toString(),
-// //             created : new Date()
-// //         };
-// //         sales
-// //             .insert(sale)
-// //             .then(res.status(200))
-// //     }
-// //     else
-// //     {
-// //         res.status(422)
-// //         res.json({
-// //             message: "Both Name and Content are required"
-// //         })
-// //     }
+//     console.log(localStorage.getItem('auth-token'));
     
-// // })
+//     // const API_call = await fetch('http://localhost:5000/salee', {
+//     //   method: 'GET',
+//     //   Headers: { "auth-token": `bearer ${localStorage.getItem('auth-token')}` }
+//     // })
 
-// // app.get('/salee', (req, res)=>
-// // {
-// //     sales
-// //         .find()
-// //         .then(sales=>
-// //             {
-// //                 res.json(sales)
-// //             })
-// // })
+//     const API_call = await axios({
+//       method: 'get', //you can set what request you want to be
+//       url: 'http://localhost:5000/salee',
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem('auth-token')}`
+//       }
+//     })
 
-// app.listen(5000, ()=>
-// {
+//     console.log(API_call);
     
-//     console.log('listening on port 5000');
-    
-// })
+//     // const {status} = API_call  
+//     // if (status === 401) {
+//     //   this.props.history.push('/sign-in')}
+//     // const saleesObject = await API_call.json();
+
+
+//     // this.setState({ salees: saleesObject });
+//   }
+
+//   componentWillMount() {
+//     this.loadContent();
+//   }
+
+//   OnRefresh = () => this.loadContent();
+
+//   render() {
+//     return (
+//       <div>
+//         <Header />
+//         <Form refresh={this.OnRefresh} />
+//         <Sales salees={this.state.salees} />
+//       </div>
+//     );
+//   }
+// }
+
+// export default App;
