@@ -43,10 +43,7 @@ class Router1 extends React.Component {
           <div>
             <Switch>
               <Route exact path="/" component={App} />
-              <Route path="/sign-in"
-                render={props => (
-                  <Login {...props} userAuthProp={this.userAuth} />)}
-              />
+              <Route path="/sign-in" componet={Login}/>
               <Route path="/sign-up" component={SignUp} />
             </Switch>
           </div>

@@ -19,11 +19,9 @@ export default class Login extends Component {
             body: JSON.stringify(user),
             headers:{'content-type':'application/json'}})
      
-        const {username, token} = await response.json();
+        const {token} = await response.json();
 
         localStorage.setItem('auth-token', token) 
-
-        this.props.userAuthProp(username)
         this.props.history.push('/')
         
     }

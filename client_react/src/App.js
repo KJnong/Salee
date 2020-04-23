@@ -13,25 +13,25 @@ class App extends React.Component {
 
   loadContent = async () => {
 
-  
-  const token = localStorage.getItem('auth-token'); 
-  console.log(token);
 
-    const {data, status} = await axios({
-      method: 'get', 
+    const token = localStorage.getItem('auth-token');
+
+    const { data, status } = await axios({
+      method: 'get',
       url: 'http://localhost:5000/salee',
       headers: {
         Authorization: `Bearer ${token}`
       }
-    })    
+    })
 
-  
+
     console.log(status);
-    
- 
+
+
     if (status === 400) {
-      this.props.history.push('/sign-in')}
-    
+      this.props.history.push('/sign-in')
+    }
+
     this.setState({ salees: data });
   }
 
