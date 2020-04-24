@@ -16,21 +16,13 @@ class App extends React.Component {
 
     const token = localStorage.getItem('auth-token');
 
-    const { data, status } = await axios({
+    const {data} = await axios({
       method: 'get',
       url: 'http://localhost:5000/salee',
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
-
-
-    console.log(status);
-
-
-    if (status === 400) {
-      this.props.history.push('/sign-in')
-    }
 
     this.setState({ salees: data });
   }

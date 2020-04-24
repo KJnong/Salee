@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import '../ComponentStyle/LogReg.css'
+import auth from '../PrivateRoute/auth'
 
 export default class Login extends Component {
 
@@ -21,8 +22,11 @@ export default class Login extends Component {
      
         const {token} = await response.json();
 
-        localStorage.setItem('auth-token', token) 
-        this.props.history.push('/')
+        auth.login(()=>{
+            localStorage.setItem('auth-token', token) 
+            this.props.history.push('/')
+        })
+        
         
     }
 
