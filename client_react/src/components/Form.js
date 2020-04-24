@@ -1,34 +1,34 @@
 import React from 'react'
 import '../components/ComponentStyle/Form.css'
+import axios from 'axios'
 
 const Form = (props) => {
 
     const sendSalee = async (e) => {
         e.preventDefault();
 
-        const name = e.target.elements.name.value;
         const content = e.target.elements.content.value
 
         const salee = {
-            name,
-            content
+            content,
+            name: 'Jerthro'
         }
 
         e.currentTarget.reset();
 
-        await fetch('http://localhost:5000/salee', {
+        const token = localStorage.getItem('auth-token');
+        await axios({
             method: 'Post',
-            body: JSON.stringify(salee),
-            headers: { 'content-type': 'application/json' }
+            url: 'http://localhost:5000/salee',
+            data: salee,
+            headers: { 'content-type': 'application/json',
+            Authorization: `Bearer ${token}` }
         })
         props.refresh();
     }
 
     return (
         <form className="salee-form" onSubmit={sendSalee}>
-            <label>Name</label>
-            <input className="u-full-width" type="text" name="name" />
-
             <label>Salee</label>
             <textarea className="u-full-width" type="text" name="content"></textarea>
 

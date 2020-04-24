@@ -18,4 +18,4 @@ const saleeSchema = mongoose.Schema({
 
 })
 
-module.exports = mongoose.model("saleeModel", saleeSchema)
+module.exports = mongoose.model("sales", saleeSchema)

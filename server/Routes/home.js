@@ -3,9 +3,8 @@ const router = require('express').Router();
 const saleeModel = require('../Models/Sales')
 const TokenVerify = require('../Validation/TokenVerify')
 
-router.get('/salee', TokenVerify , async (req, res) => {
+router.get('/salee', TokenVerify, async (req, res) => {
     const SaleObject = await saleeModel.find();
-
     res.send(SaleObject);
 })
 
