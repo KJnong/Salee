@@ -1,6 +1,8 @@
 class Auth{
     constructor(){
-        this.authenticated = false;
+        localStorage.getItem('auth-token')?
+        this.authenticated = true : this.authenticated = false;
+        
     }
 
     login(cb){
