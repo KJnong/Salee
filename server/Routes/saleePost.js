@@ -1,19 +1,34 @@
 const router = require('express').Router();
 const saleeModel = require('../Models/Sales')
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
 
 
-router.post('/', async (req, res) => {
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, new Date().toDateString() + file.originalname)
+    }
+  })
+   
+  const upload = multer({ storage: storage })
+
+
+router.post('/', upload.single('image'), async (req, res) => {
 
     const authHeader = req.header('Authorization');
     const token = authHeader && authHeader.split(' ')[1];
 
     const {name} = jwt.verify(token, process.env.Token_Key);
     
+    
     const sales = new saleeModel(
         {
             name: name,
             content: req.body.content,
+            imagePath: req.file.path,
             created: new Date()
         })
 

@@ -12,6 +12,10 @@ const saleeSchema = mongoose.Schema({
         min:10,
         max:50
     },
+    imagePath:{
+        type: String,
+        required: true,
+    },
     created:{
         type:Date,
     }
