@@ -5,7 +5,6 @@ require('dotenv').config();
 const authRouter = require('./Routes/auth')
 const homeRouter = require('./Routes/home')
 const postSaleeRouter = require('./Routes/saleePost')
-const bodyParser = require('body-parser');
 
 //database connection string
 // localhost database 'mongodb://localhost:/myproject'
@@ -19,7 +18,6 @@ db.connect(connectString, { useNewUrlParser: true }, () => {
     console.log('connected to db');
 })
 
-app.use(bodyParser.json());
 app.use(cors()); //middleware for cors
 app.use(express.json());
 
