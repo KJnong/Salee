@@ -11,11 +11,11 @@ const Sales = (props) => {
     return (
         <div>
             {props.salees.map(sale => (
-                <div class="card">
-                    <img class="card-img-top" src={image} alt="Card image cap" />
-                    <div class="card-body">
-                        <h5 class="card-title">{sale.name}</h5>
-                        <p class="card-text">{sale.content}.</p>
+                <div className="card">
+                    <img className="card-img-top" src={`http://localhost:5000/${sale.imagePath}`} alt="Card image cap" />
+                    <div className="card-body">
+                        <h5 className="card-title">{sale.name}</h5>
+                        <p className="card-text">{sale.content}.</p>
                         <a href="#" class="btn btn-primary">Details</a>
                     </div>
                 </div>))}

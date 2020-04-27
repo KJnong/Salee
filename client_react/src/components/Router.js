@@ -10,7 +10,18 @@ import Login from "../components/Login-Register/Login";
 import SignUp from "../components/Login-Register/Register";
 
 class Router1 extends React.Component {
+  state = {LoggedIn:false}
+
   render() {
+  
+    
+    let clasName= ''
+    this.state.LoggedIn ? clasName = 'Logged-in': clasName = 'nav-link';
+
+    let logout = ''
+    this.state.LoggedIn ? logout = "logged-in": logout = 'logged-in';
+
+    
     return (<Router>
       <div>
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
@@ -19,10 +30,10 @@ class Router1 extends React.Component {
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <Link className="nav-link" to={"/sign-in"}>Login</Link>
+                  <Link className={clasName} to={"/sign-in"}>Login</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
+                  <Link className={clasName} to={"/sign-up"}>Sign up</Link>
                 </li>
               </ul>
             </div>

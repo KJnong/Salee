@@ -18,6 +18,8 @@ const storage = multer.diskStorage({
 
 router.post('/', upload.single('image'), async (req, res) => {
 
+  console.log(req.file);
+  
     const authHeader = req.header('Authorization');
     const token = authHeader && authHeader.split(' ')[1];
 

@@ -19,6 +19,7 @@ db.connect(connectString, { useNewUrlParser: true }, () => {
 })
 
 app.use(cors()); //middleware for cors
+app.use('/uploads' ,express.static('uploads'))
 app.use(express.json());
 
 //reg and login route
