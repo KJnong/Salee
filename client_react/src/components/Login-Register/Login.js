@@ -24,7 +24,7 @@ export default class Login extends Component {
 
         auth.login(()=>{
             localStorage.setItem('auth-token', token) 
-            this.props.history.push('/')
+            this.props.history.push('/retailer')
         })
         
         

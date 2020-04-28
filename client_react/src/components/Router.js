@@ -5,9 +5,10 @@ import '../components/ComponentStyle/Router.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SaleeRoute from './PrivateRoute/SaleeRoute'
 
-import App from '../App'
+import Retailer from './Retailer'
 import Login from "../components/Login-Register/Login";
 import SignUp from "../components/Login-Register/Register";
+import Home from './Home';
 
 class Router1 extends React.Component {
   state = {LoggedIn:false}
@@ -30,7 +31,7 @@ class Router1 extends React.Component {
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <Link className={clasName} to={"/sign-in"}>Login</Link>
+                  <Link className={clasName} to={"/sign-in"}>Retailer</Link>
                 </li>
                 <li className="nav-item">
                   <Link className={clasName} to={"/sign-up"}>Sign up</Link>
@@ -45,7 +46,8 @@ class Router1 extends React.Component {
             <Switch>
               <Route path="/sign-in" component={Login}/>
               <Route path="/sign-up" component={SignUp} />
-              <SaleeRoute exact path="/" component={App} />
+              <SaleeRoute exact path="/retailer" component={Retailer} />
+              <Route path="/" component={Home}/>
             </Switch>
           </div>
         </div>

@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
-import Header from './components/Header'
-import Form from './components/Form'
-import Sales from './components/Sales'
+import '../App.css';
+import Header from './Header'
+import Form from './Form'
+import Sales from './Sales'
 import axios from 'axios'
 
 class App extends React.Component {
@@ -18,7 +18,7 @@ class App extends React.Component {
 
     const {data} = await axios({
       method: 'get',
-      url: 'http://localhost:5000/salee',
+      url: 'http://localhost:5000/retailer',
       headers: {
         Authorization: `Bearer ${token}`
       }
