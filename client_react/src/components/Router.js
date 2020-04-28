@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../components/ComponentStyle/Router.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SaleeRoute from './PrivateRoute/SaleeRoute'
+import LoginRoute from './PrivateRoute/LoginRoute'
 
 import Retailer from './Retailer'
 import Login from "../components/Login-Register/Login";
@@ -44,7 +45,7 @@ class Router1 extends React.Component {
         <div className="auth-wrapper">
           <div>
             <Switch>
-              <Route path="/sign-in" component={Login}/>
+              <LoginRoute path="/sign-in" component={Login}/>
               <Route path="/sign-up" component={SignUp} />
               <SaleeRoute exact path="/retailer" component={Retailer} />
               <Route path="/" component={Home}/>
