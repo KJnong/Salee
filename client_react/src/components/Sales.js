@@ -3,7 +3,6 @@ import Moment from 'moment'
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../components/ComponentStyle/Form.css'
-import image from '../img/IMAGE.jpg'
 
 const Sales = (props) => {
 
@@ -16,7 +15,6 @@ const Sales = (props) => {
                     <div className="card-body">
                         <h5 className="card-title">{sale.name}</h5>
                         <p className="card-text">{sale.content}.</p>
-                        <a href="#" class="btn btn-primary">Details</a>
                     </div>
                 </div>))}
         </div>

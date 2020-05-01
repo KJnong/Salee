@@ -3,6 +3,8 @@ import '../App.css';
 import Header from './Header'
 import Sales from './Sales'
 import axios from 'axios'
+import Search from './Search';
+
 
 export default class Home extends Component {
 

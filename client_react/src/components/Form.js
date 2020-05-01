@@ -55,9 +55,10 @@ class Form extends React.Component {
                 </div>
 
                 <label>Salee</label>
-                <textarea className="u-full-width" type="text" name="content"></textarea>
-
+                <input className="u-full-width" type="text" name="content"/>
+                <div>
                 <button type='submit' className="button-primary">Send Salee</button>
+                </div>
             </form>
         )
     }

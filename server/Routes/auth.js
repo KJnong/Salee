@@ -18,6 +18,7 @@ router.post('/register', async (req, res) => {
         return res.status(401).send("Email already exist")
     }
 
+    
     //hash password
     const salt = await bcrypt.genSalt()
     const hashedPassword = await bcrypt.hash(req.body.password, salt)

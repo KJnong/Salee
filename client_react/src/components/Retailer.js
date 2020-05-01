@@ -4,6 +4,7 @@ import Header from './Header'
 import Form from './Form'
 import Sales from './Sales'
 import axios from 'axios'
+import auth from './PrivateRoute/auth'
 
 class App extends React.Component {
   state =
@@ -27,6 +28,14 @@ class App extends React.Component {
     this.setState({ salees: data });
   }
 
+  logout = (event)=>{
+    event.preventDefault()
+    auth.logout(()=>{
+      localStorage.clear();
+      this.props.history.push('/')
+    })
+  }
+
   componentWillMount() {
     this.loadContent();
   }
@@ -39,6 +48,9 @@ class App extends React.Component {
         <Header />
         <Form refresh={this.OnRefresh} />
         <Sales salees={this.state.salees} />
+        <button onClick={this.logout} class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </button>
       </div>
     );
   }
