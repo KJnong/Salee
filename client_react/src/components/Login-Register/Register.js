@@ -19,7 +19,7 @@ export default class SignUp extends Component {
             password
         }
 
-        const {status} = await fetch('http://localhost:5000/user/register',{
+        const {status} = await fetch('/api/user/register',{
             method: 'Post',
             body: JSON.stringify(newUser),
             headers:{'content-type':'application/json'}})

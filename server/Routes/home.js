@@ -9,6 +9,7 @@ router.get('/retailer', TokenVerify, async (req, res) => {
 })
 
 router.get('/salee', async (req, res) => {
+    console.log('test');
     const SaleObject = await saleeModel.find();
     res.send(SaleObject);
 })

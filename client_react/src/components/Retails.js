@@ -11,7 +11,7 @@ const Retails = (props) => {
         <div>
             {props.salees.map(sale => (
                 <div className="card">
-                    <img className="card-img-top" src={`http://localhost:5000/${sale.imagePath}`} alt="Card image cap" />
+                    <img className="card-img-top" src={`/api/${sale.imagePath}`} alt="Card image cap" />
                     <div className="card-body">
                         <p><small className="card-text">{sale.item}</small></p>
                         <small className="card-text">Was: R{sale.was}</small>

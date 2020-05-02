@@ -18,7 +18,7 @@ class App extends React.Component {
 
     const {data} = await axios({
       method: 'get',
-      url: 'http://localhost:5000/retailer',
+      url: '/api/retailer',
       headers: {
         Authorization: `Bearer ${token}`
       }

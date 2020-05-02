@@ -15,7 +15,7 @@ export default class Login extends Component {
             password
         }
 
-        const response = await fetch('http://localhost:5000/user/login',{
+        const response = await fetch('/api/user/login',{
             method: 'Post',
             body: JSON.stringify(user),
             headers:{'content-type':'application/json'}})

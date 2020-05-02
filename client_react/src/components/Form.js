@@ -36,7 +36,7 @@ class Form extends React.Component {
         const token = localStorage.getItem('auth-token');
         await axios({
             method: 'Post',
-            url: 'http://localhost:5000/salee',
+            url: '/api/salee',
             data: formData,
             headers: { Authorization: `Bearer ${token}` }
         })

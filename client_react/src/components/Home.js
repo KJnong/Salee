@@ -15,7 +15,7 @@ export default class Home extends Component {
 
     loadContent = async () => {
 
-        const {data} = await axios.get('http://localhost:5000/salee')
+        const {data} = await axios.get('/api/salee')
     
         this.setState({ salees: data });
       }
