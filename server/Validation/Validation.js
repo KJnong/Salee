@@ -3,11 +3,7 @@ const Joi = require("@hapi/joi");
 RegiserValidation = (data) => {
 
     const valSchema = Joi.object({
-        name: Joi.string()
-            .min(3)
-            .max(20)
-            .required(),
-        lastName: Joi.string()
+        retailer: Joi.string()
             .min(3)
             .max(20)
             .required(),

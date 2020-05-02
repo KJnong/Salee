@@ -1,4 +1,4 @@
-
+import auth from './PrivateRoute/auth'
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../components/ComponentStyle/Router.css';
@@ -12,17 +12,10 @@ import SignUp from "../components/Login-Register/Register";
 import Home from './Home';
 
 class Router1 extends React.Component {
-  state = {LoggedIn:false}
-
   render() {
   
-    
     let clasName= ''
-    this.state.LoggedIn ? clasName = 'Logged-in': clasName = 'nav-link';
-
-    let logout = ''
-    this.state.LoggedIn ? logout = "logged-in": logout = 'logged-in';
-
+    localStorage.getItem('auth-token') ? clasName = 'Logged-in': clasName = 'nav-link';
     
     return (<Router>
       <div>
@@ -32,7 +25,7 @@ class Router1 extends React.Component {
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <Link className={clasName} to={"/sign-in"}>Retailer</Link>
+                  <Link className='nav-link' to={"/sign-in"}>Retailer</Link>
                 </li>
                 <li className="nav-item">
                   <Link className={clasName} to={"/sign-up"}>Sign up</Link>

@@ -20,15 +20,17 @@ class Form extends React.Component {
     sendSalee = async (e) => {
         e.preventDefault();
 
-        const content = e.target.elements.content.value
-
-    
+        const item = e.target.elements.items.value
+        const was = e.target.elements.was.value
+        const now = e.target.elements.now.value
 
         let formData = new FormData();
-        formData.append("content", content);
         formData.append("image", this.state.image, this.state.image.name);
+        formData.append("item", item);
+        formData.append("was", was);
+        formData.append("now", now);
 
-        
+
         e.currentTarget.reset();
 
         const token = localStorage.getItem('auth-token');
@@ -36,7 +38,7 @@ class Form extends React.Component {
             method: 'Post',
             url: 'http://localhost:5000/salee',
             data: formData,
-            headers: {Authorization: `Bearer ${token}`}
+            headers: { Authorization: `Bearer ${token}` }
         })
         this.props.refresh();
     }
@@ -44,20 +46,21 @@ class Form extends React.Component {
     render() {
         return (
             <form className="salee-form" onSubmit={this.sendSalee}>
-                <div class="input-group">
-                    <div className="input-group-prepend">
-                        <span className="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                    </div>
-                    <div className="custom-file">
-                        <input type="file" onChange={this.fileSelected} class="custom-file-input" />
-                        <label className="custom-file-label" for="inputGroupFile01">Choose Sale Image</label>
-                    </div>
+                <div class="custom-file">
+                    <input type="file" onChange={this.fileSelected} class="custom-file-input" id="customFile" />
+                    <label class="custom-file-label" for="customFile">Choose file</label>
                 </div>
-
-                <label>Salee</label>
-                <input className="u-full-width" type="text" name="content"/>
                 <div>
-                <button type='submit' className="button-primary">Send Salee</button>
+                    <input type="text" name="items" placeholder='Item' />
+                </div>
+                <div>
+                    <input type="text" name="was" placeholder='Was' />
+                </div>
+                <div>
+                    <input  type="number" name="now" placeholder='Now' />
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary btn-lg">Send Salee</button>
                 </div>
             </form>
         )

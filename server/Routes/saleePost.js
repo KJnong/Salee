@@ -19,17 +19,21 @@ const storage = multer.diskStorage({
 router.post('/', upload.single('image'), async (req, res) => {
 
   console.log(req.file);
+  console.log(req.body);
+  
   
     const authHeader = req.header('Authorization');
     const token = authHeader && authHeader.split(' ')[1];
 
     const {name} = jwt.verify(token, process.env.Token_Key);
     
-    
+     
     const sales = new saleeModel(
         {
             name: name,
-            content: req.body.content,
+            item: req.body.item,
+            was: req.body.was,
+            now: req.body.now,
             imagePath: req.file.path,
             created: new Date()
         })

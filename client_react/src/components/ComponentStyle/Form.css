@@ -1,7 +1,6 @@
 .salee-form{
-    width: 50%;
-    margin:0 auto;
-    text-align: center;
+    width: 40%;
+    margin: auto;
   
   }
 
@@ -16,5 +15,10 @@
   }
 
   .card-img-top{
-    height: 210px;
+    height: 200px;
   }
+
+  .custom-file{
+    width: 64.5%;
+  }
+

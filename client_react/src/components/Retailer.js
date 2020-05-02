@@ -2,9 +2,9 @@ import React from 'react';
 import '../App.css';
 import Header from './Header'
 import Form from './Form'
-import Sales from './Sales'
 import axios from 'axios'
 import auth from './PrivateRoute/auth'
+import Retails from './Retails';
 
 class App extends React.Component {
   state =
@@ -13,8 +13,7 @@ class App extends React.Component {
     }
 
   loadContent = async () => {
-
-
+   
     const token = localStorage.getItem('auth-token');
 
     const {data} = await axios({
@@ -23,6 +22,8 @@ class App extends React.Component {
       headers: {
         Authorization: `Bearer ${token}`
       }
+      
+      
     })
 
     this.setState({ salees: data });
@@ -47,7 +48,7 @@ class App extends React.Component {
       <div>
         <Header />
         <Form refresh={this.OnRefresh} />
-        <Sales salees={this.state.salees} />
+        <Retails salees={this.state.salees} />
         <button onClick={this.logout} class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </button>

@@ -6,11 +6,19 @@ const saleeSchema = mongoose.Schema({
         required: true,
         min:8
     },
-    content:{
+    item:{
         type: String,
         required: true,
-        min:10,
+        min:2,
         max:50
+    },
+    was:{
+        type: Number,
+        required: true,
+    },
+    now:{
+        type: Number,
+        required: true,
     },
     imagePath:{
         type: String,
@@ -22,4 +30,4 @@ const saleeSchema = mongoose.Schema({
 
 })
 
-module.exports = mongoose.model("sales", saleeSchema)
+module.exports = mongoose.model("salee", saleeSchema)

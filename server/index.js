@@ -9,7 +9,7 @@ const postSaleeRouter = require('./Routes/saleePost')
 //database connection string
 // localhost database 'mongodb://localhost:/myproject'
 const password = process.env.MongoDB_Password;
-const connectString = `mongodb+srv://Jethro:${password}@salee-ppqqx.mongodb.net/test?retryWrites=true&w=majority`
+const connectString = `mongodb+srv://Jethro:${password}@salee-ppqqx.mongodb.net/Salee?retryWrites=true&w=majority`
 
 const app = express();  //creating the app
 

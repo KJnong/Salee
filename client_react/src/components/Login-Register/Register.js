@@ -9,14 +9,12 @@ export default class SignUp extends Component {
     RegisterUser = async (e)=> {
         e.preventDefault();
 
-        const name = e.target.elements.name.value;
-        const lastName = e.target.elements.lastName.value;
+        const retailer = e.target.elements.retailer.value;
         const email = e.target.elements.email.value;
         const password = e.target.elements.password.value
 
         const newUser = {
-            name,
-            lastName,
+            retailer,
             email,
             password
         }
@@ -46,13 +44,8 @@ export default class SignUp extends Component {
                 <h3>Sign Up</h3>
 
                 <div className="form-group">
-                    <label>First name</label>
-                    <input type="text" className="form-control" name='name' placeholder="First name" />
-                </div>
-
-                <div className="form-group">
-                    <label>Last name</label>
-                    <input type="text" className="form-control" name='lastName' placeholder="Last name" />
+                    <label>Retailer</label>
+                    <input type="text" className="form-control" name='retailer' placeholder="Retailer" />
                 </div>
 
                 <div className="form-group">

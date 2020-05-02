@@ -6,6 +6,9 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 router.post('/register', async (req, res) => {
+
+    console.log(req.body);
+    
     //valadating req.body
     const { error } = await RegiserValidation(req.body);
 
@@ -26,8 +29,7 @@ router.post('/register', async (req, res) => {
 
     const user = new userModel(
         {
-            name: req.body.name,
-            lastName: req.body.lastName,
+            retailer: req.body.retailer,
             email: req.body.email,
             password: hashedPassword
         })
@@ -57,7 +59,7 @@ router.post('/login', async (req, res) => {
     if (!validPassword) res.status(400).send("Username or Password incorrect");
 
     //set up token
-    const token = jwt.sign({email: user.email, name:user.name}, process.env.Token_Key );
+    const token = jwt.sign({email: user.email, name:user.retailer}, process.env.Token_Key );
     res.json({token: token})
 
 })
