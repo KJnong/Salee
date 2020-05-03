@@ -19,7 +19,7 @@ db.connect(connectString, { useNewUrlParser: true }, () => {
     console.log('connected to db');
 })
 
-app.use(express.static(path.join(__dirname,'client/build')))
+// app.use(express.static(path.join(__dirname,'client/build')))
 
 app.use(cors()); //middleware for cors
 app.use('/api/uploads' ,express.static('uploads'))
@@ -34,10 +34,10 @@ app.use('/api/salee', postSaleeRouter)
 //home route
 app.use('/api', homeRouter )
 
-app.get('*', (req, res) => {
-    // res.sendFile(path.join(`${__dirname}/client_react/build/index.html`));
-    res.send('Not found');
-});
+// app.get('*', (req, res) => {
+//     // res.sendFile(path.join(`${__dirname}/client_react/build/index.html`));
+//     res.send('Not found');
+// });
 
 
 
