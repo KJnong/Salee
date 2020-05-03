@@ -1,0 +1,24 @@
+.salee-form{
+    width: 40%;
+    margin: auto;
+  
+  }
+
+  .card {
+    display:inline-block;
+    margin: auto;
+    height: auto;
+    width: 20%;
+    background-color: darkgray;
+    border-radius: 10px;
+  
+  }
+
+  .card-img-top{
+    height: 200px;
+  }
+
+  .custom-file{
+    width: 64.5%;
+  }
+
