@@ -19,7 +19,7 @@ db.connect(connectString, { useNewUrlParser: true }, () => {
     console.log('connected to db');
 })
 
-app.use(express.static(path.join(__dirname,'client_react/build')))
+app.use(express.static(path.join(__dirname,'client/build')))
 
 app.use(cors()); //middleware for cors
 app.use('/api/uploads' ,express.static('uploads'))
